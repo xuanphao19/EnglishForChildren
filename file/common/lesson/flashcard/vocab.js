@@ -94,224 +94,6 @@ var obj_vbkd = {
     "m.mp3",
   ],
 };
-var game_vocab_kd = {
-  check: function (str, value) {
-    if (value.indexOf(str) == 0) {
-      return true;
-    } else {
-      return false;
-    }
-  },
-  input_key: function (key) {
-    if (obj_vbkd.start_word == 0 && obj_vbkd.next_w == 1) {
-      $("#vb_text_input span:first").html("");
-      $("#vb_text_input span:last").show();
-    }
-    var str = $("#vb_text_input span:first").text();
-    var str1 = $("#vb_text_input span:last").text();
-    if (str != "") {
-      str += key;
-    } else {
-      str = key;
-    }
-    //console.log(str);
-    str = str.toLowerCase();
-    obj_vbkd.word_curr.correct = obj_vbkd.word_curr.correct.toLowerCase();
-    if (game_vocab_kd.check(str, obj_vbkd.word_curr.correct)) {
-      obj_vbkd.start_word++;
-      var n = str.length;
-      if (obj_vbkd.word_curr.correct[n] == " " || obj_vbkd.word_curr.correct[n] == "-") {
-        str += obj_vbkd.word_curr.correct[n];
-        if (obj_vbkd.word_curr.correct[n] == " ") {
-          str1 = str1.replace(" ", "");
-        } else {
-          str1 = str1.replace("-", "");
-        }
-      }
-      $("#vb_text_input span:first").text(str);
-      str1 = str1.replace("*", "");
-      $("#vb_text_input span:last").text(str1);
-      $("#vb_check_input").removeClass("false").css("top", "-50px");
-      if (str == obj_vbkd.word_curr.correct) {
-        obj_vbkd.score++;
-        $(".vb_kbd_score .score").text(obj_vbkd.score);
-        if (typeof is_mobile != "undefined") {
-          $("#vb_check_input").addClass("true").animate({top: "0px"}, 500);
-          //game_vocab_kd.next();
-          setTimeout(function () {
-            game_vocab_kd.next();
-          }, 2000);
-        } else {
-          $("#vb_check_input")
-            .addClass("true")
-            .animate({top: "0px"}, 500, function () {
-              game_vocab_kd.next();
-            });
-        }
-      }
-    } else {
-      $("#vb_check_input").addClass("false").animate({top: "0px"}, 500);
-    }
-  },
-  hint: function () {
-    var key = obj_vbkd.word_curr.correct[obj_vbkd.start_word];
-    if (key == " " || key == "-") {
-      obj_vbkd.start_word += 1;
-    }
-    key = obj_vbkd.word_curr.correct[obj_vbkd.start_word];
-    $(".ltt_key_item[alt=" + key + "]").click();
-  },
-  next: function () {
-    if (obj_vbkd.score == 2 && !is_vip) {
-      $(".vbkd_audio_alert").attr("media-url", obj_vbkd.audio_non_vip_kid);
-      $(".vbkd_audio_alert").click();
-      $(".end_game_box").addClass("box_non_vip").html(non_vip_alert);
-      $(".vbkd_close").click(function () {
-        game_vocab_kd.do_again();
-      });
-      $("#vbkd_alert").toggle("slide", {direction: "right"}, 700);
-    } else {
-      if (number_word == obj_vbkd.score) {
-        $(".vbkd_audio_alert").click();
-        $(".total_score_end").text(number_word + " /" + number_word);
-        $("#vbkd_alert").toggle("slide", {direction: "right"}, 700);
-      } else {
-        obj_vbkd.next_w = 0;
-        $("#vb_text_input").animate({top: "-47px", opacity: 0}, 300);
-        setTimeout(function () {
-          game_vocab_kd.asign();
-        }, 400);
-      }
-    }
-  },
-  do_again: function () {
-    if (is_vip) {
-      obj_vbkd.word_list = game_vocab_kd.random_arr(obj_vbkd.word_list);
-    }
-    obj_vbkd.score = 0;
-    $(".vb_kbd_score .score").text(0);
-    $("#vbkd_alert").toggle("slide", {direction: "right"}, 500, function () {
-      game_vocab_kd.asign();
-    });
-  },
-  random_arr: function (arr) {
-    for (var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
-    return arr;
-  },
-
-  getAudio: function () {
-    $.getScript("/file/common/game123/js/audio_game_vs1.js", function () {
-      $("#game_ubaPlayer").ubaPlayer_game({
-        audioButtonClass: "uba_ctrl",
-        codecs: [{name: "MP3", codec: "audio/mpeg;"}],
-        playStartCallback: _PlayingAudioHide2,
-        stopCallback: _stopAudioHide2,
-      });
-    });
-  },
-  asign: function () {
-    $(".ltt_key_item.active").removeClass("active");
-    $("#vb_check_input").removeClass("true").css("top", "-50px");
-    var inx = obj_vbkd.score;
-    obj_vbkd.start_word = 0;
-    obj_vbkd.word_curr = obj_vbkd.word_list[inx];
-    $("#vb_text_input span:first").text(obj_vbkd.word_curr.correct);
-    var str_hide = "";
-    for (var i = 0; i < obj_vbkd.word_curr.correct.length; i++) {
-      if (obj_vbkd.word_curr.correct[i] == " ") {
-        str_hide += " ";
-      } else if (obj_vbkd.word_curr.correct[i] == "-") {
-        str_hide += "-";
-      } else {
-        str_hide += "*";
-      }
-    }
-    $("#vb_text_input span:last").hide().text(str_hide);
-    $("#vb_kbd_audio").attr("media-url", obj_vbkd.loc + obj_vbkd.word_curr.sound);
-    $("#vb_text_input").animate({top: "0px", opacity: 1}, 700, function () {
-      obj_vbkd.next_w = 1;
-    });
-    $("#vb_kbd_audio").trigger("click");
-  },
-
-  get_html: function () {
-    console.log(obj_vbkd);
-    var hd_game = "";
-    if (typeof is_mobile != "undefined") {
-      hd_game = hd_mobile;
-      load_css(sever_vocab_kd + "vocab_keyboard/css/m_style_new.css");
-    } else {
-      load_css(sever_vocab_kd + "vocab_keyboard/css/style.css");
-      if (obj_vbkd.is_tablet != 0) {
-        hd_game = hd_mobile;
-      } else {
-        hd_game = hd_pc;
-      }
-    }
-    // https://data.tienganh123.com/static_20/js/m-common.js?v=202103
-    $("#game_vocab").html(obj_vbkd.tpl_game).show();
-    $(".instruction_game_vbkd").html(hd_game);
-    $(".vb_kbd_score .total_score").text(number_word);
-    $(".ltt_key_item").each(function (i) {
-      $(this).attr("media-url", obj_vbkd.loc_audio + obj_vbkd.list_alphabet[i]);
-    });
-    game_vocab_kd.getAudio();
-    $(".ltt_key_item").click(function () {
-      $(".ltt_key_item.active").removeClass("active");
-      $(this).addClass("active");
-      var key = $(this).text();
-      game_vocab_kd.input_key(key);
-    });
-
-    $("#btn_start_vbkd").click(function () {
-      $(this).parent().toggle("slide", {direction: "right"}, 500);
-      game_vocab_kd.asign();
-    });
-    $("#do_again").click(function () {
-      game_vocab_kd.do_again();
-    });
-    $("#vb_kbd_hint").click(function () {
-      game_vocab_kd.hint();
-    });
-    if (typeof is_mobile == "undefined") {
-      var bind_ev = "keypress";
-      if (is_not_firefox()) {
-        bind_ev = "keydown";
-      }
-      var code1 = 0,
-        code = 0,
-        n = 0,
-        keyChar = "";
-      $(document).bind(bind_ev, function (e) {
-        n++;
-        e.stopPropagation();
-        code = e.keyCode ? e.keyCode : e.which;
-        if (code != 231) {
-          if (code == 8) {
-            code = code1;
-          } else {
-            code1 = code;
-          }
-          if (code == 13) {
-            $("#vb_kbd_audio").click();
-          } else {
-            keyChar = String.fromCharCode(code);
-            keyChar = keyChar.toLowerCase();
-            if ($.inArray(keyChar, obj_vbkd.arr_char) >= 0) {
-              $(".ltt_key_item[alt=" + keyChar + "]").click();
-            }
-          }
-        }
-      });
-      $("input,textarea").on("keydown", function (e) {
-        e.stopPropagation();
-      });
-      $("input,textarea").on("keypress", function (e) {
-        e.stopPropagation();
-      });
-    }
-  },
-};
 
 var UNF = "undefined";
 function loadScript_item(link_js, id) {
@@ -334,9 +116,8 @@ function flip_card(e) {
       } else {
         $(e).find(".face").hide().next().show().find(".uba_audioButton:eq(0)").click();
       }
-      $(e).css("background-color", "#7968a8");
+      $(e).css("background-color", "rgb(248 248 190)");
       front = !front;
-      $("#kr_arrecord").hide();
     },
   });
 }
@@ -352,13 +133,7 @@ function loadScript_callback(url, callback) {
 
 var target_elm = null,
   all_vocab = false;
-if (typeof is_tablet == "undefined" && typeof is_mobile == "undefined") {
-  loadScript_callback("https://www.tienganh123.com/file/common/lesson/record/record-pc.js", function () {
-    var id_start = "krr_ispeak";
-    var text_record = "krrt_text";
-    $("#box_record").speech_chrome({id_start: id_start, text_record: text_record});
-  });
-}
+
 $(document).ready(function () {
   if (typeof is_tablet != "undefined") $("#icon_audio_click").addClass("audio_tablet");
   number_card = $(".card_flip").length;
@@ -381,7 +156,6 @@ var count_word = 0;
 
 function card_back(e) {
   front = true;
-  $("#kr_arrecord").hide();
   $(".card_next").show();
   if (current_card == 1) {
     $(".card_back").hide();
@@ -411,7 +185,6 @@ var current_card = 0,
 
 function card_next(e) {
   front = true;
-  $("#kr_arrecord").hide();
   $(".card_back").show();
   if (current_card == number_card - 1) {
     $(".card_next").hide();

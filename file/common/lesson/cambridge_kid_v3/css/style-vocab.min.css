@@ -151,14 +151,6 @@ div#box_content {
   display: inline-block;
 }
 
-.w_phonetic {
-  display: inline-block;
-  font-size: 28px;
-  color: #a86423;
-  text-shadow: -2px 2px 1px #df20f5;
-  padding: 0 10px;
-  font-family: system-ui;
-}
 .wImg {
   display: flex;
   height: 50%;
@@ -267,13 +259,13 @@ div#box_content {
   .w_meaning {
     width: 80%;
     font-size: 40px;
-    padding: 20px 36px;
+    padding: 30px 36px;
   }
 
   .w_word,
   .w_example,
   .w_meaning {
-    padding: 12px 36px;
+    padding: 42px 36px;
     font-size: 52px;
   }
   .xuanPhao {
@@ -283,6 +275,15 @@ div#box_content {
     background-size: 3200px;
     animation: w1Effect 6s steps(12) infinite;
     -webkit-animation: w1Effect 6s steps(12) infinite;
+  }
+
+  .w_phonetic {
+    display: inline-block;
+    font-size: 72px;
+    color: #a86423;
+    text-shadow: -2px 2px 1px #df20f5;
+    padding: 20px 10px 0;
+    font-family: system-ui;
   }
 }
 @media (min-width: 1124px) {
@@ -378,5 +379,14 @@ div#box_content {
     background-size: 2400px;
     animation: w1Effect 3s steps(12) infinite;
     -webkit-animation: w1Effect 3s steps(12) infinite;
+  }
+
+  .w_phonetic {
+    display: inline-block;
+    font-size: 28px;
+    color: #a86423;
+    text-shadow: -2px 2px 1px #df20f5;
+    padding: 0 10px;
+    font-family: system-ui;
   }
 }

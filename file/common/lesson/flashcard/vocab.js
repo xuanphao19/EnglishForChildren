@@ -198,7 +198,7 @@ var game_vocab_kd = {
     for (var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
     return arr;
   },
- 
+
   getAudio: function () {
     $.getScript("/file/common/game123/js/audio_game_vs1.js", function () {
       $("#game_ubaPlayer").ubaPlayer_game({
@@ -404,9 +404,11 @@ function card_back(e) {
     $("#ta123_card_" + current_card + " .back").hide();
   }
 }
+var el = $(".card_flip").width();
 var current_card = 0,
   number_card = 0,
-  left_inc = 416;
+  left_inc = `${el}`;
+
 function card_next(e) {
   front = true;
   $("#kr_arrecord").hide();

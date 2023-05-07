@@ -39,49 +39,6 @@ div#box_content {
   transform: translateX(-50%);
 }
 
-.card_bt {
-  position: absolute;
-  background: #7dbdf1;
-  width: 80px;
-  cursor: pointer;
-  margin: 10px;
-  height: 80px;
-  top: 328px;
-  line-height: 38px;
-  text-align: center;
-  border-radius: 100%;
-  z-index: 10;
-  box-shadow: 0 0 10px #5242547c;
-}
-
-.card_next {
-  right: 56px;
-  animation: color_change 3s infinite 1s linear;
-}
-.card_back {
-  left: 56px;
-  animation: color_change 3s infinite linear;
-}
-.card_next:after,
-.card_back:before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border: 19px solid;
-  border-color: transparent transparent transparent #ff0000d1;
-  top: 22px;
-  right: 6px;
-}
-.card_back:before {
-  border: 19px solid;
-  border-color: transparent #ff0000d1 transparent transparent;
-  top: unset;
-  left: unset;
-  top: 22px;
-  left: 6px;
-}
-
 #card123_wrapper ul {
   display: block;
   left: 0;
@@ -128,10 +85,10 @@ div#box_content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 28px;
   margin: 56px auto 0;
   padding: 2px 36px 6px;
-  width: 162px;
+  width: 312px;
   height: 60px;
   font-size: 52px;
   font-weight: 600;
@@ -171,13 +128,6 @@ div#box_content {
   animation: color_change 8s infinite linear;
 }
 
-.w_meaning {
-  width: 80%;
-  margin: 6px auto;
-  font-size: 26px;
-  padding: 4px 36px;
-  animation: color_change 8s infinite 1s linear;
-}
 .w_example {
   font-size: 24px;
 }
@@ -245,4 +195,188 @@ div#box_content {
   transform: translateX(-50%);
   border-radius: 8px 8px 0 0;
   box-shadow: 0 0 2px #fff;
+}
+
+.xuanPhao {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url(../../../../../assets/img/EmLaPhao-min.png);
+  background-repeat: no-repeat;
+  z-index: 9999;
+}
+@keyframes w1Effect {
+  100% {
+    background-position: -2400px;
+  }
+}
+@media (min-width: 524px) {
+  #card123_wrapper {
+    height: 96vh !important;
+  }
+  .item_card .back,
+  .item_card .face {
+    height: 94vh !important;
+  }
+  div#box_content {
+    width: 96%;
+  }
+  #card123_wrapper ul li {
+    width: 750px;
+  }
+
+  .card_bt {
+    position: absolute;
+    top: 40%;
+    width: 120px;
+    height: 120px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 100%;
+    background: #7dbdf1;
+    box-shadow: 0 0 10px #5242547c;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .card_next {
+    right: 6px;
+    animation: color_change 3s infinite 1s linear;
+  }
+  .card_back {
+    left: 6px;
+    animation: color_change 3s infinite linear;
+  }
+
+  .card_next:after,
+  .card_back:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 30px solid;
+    border-color: transparent transparent transparent #ff0000d1;
+    top: 28px;
+    right: 6px;
+  }
+  .card_back:before {
+    border-color: transparent #ff0000d1 transparent transparent;
+    left: unset;
+    left: 6px;
+  }
+  .w_meaning {
+    width: 80%;
+    font-size: 40px;
+    padding: 20px 36px;
+  }
+
+  .w_word,
+  .w_example,
+  .w_meaning {
+    padding: 12px 36px;
+    font-size: 52px;
+  }
+  .xuanPhao {
+    top: 15%;
+    width: 250px;
+    height: 480px;
+    background-size: 3200px;
+    animation: w1Effect 6s steps(12) infinite;
+    -webkit-animation: w1Effect 6s steps(12) infinite;
+  }
+}
+@media (min-width: 1124px) {
+  div#box_content {
+    width: 60%;
+  }
+  #card123_wrapper {
+    height: 96vh !important;
+    width: 40%;
+  }
+  .item_card .back,
+  .item_card .face {
+    height: 94vh !important;
+  }
+  #card123_wrapper ul li {
+    width: 462px;
+  }
+
+  .card_bt {
+    position: absolute;
+    background: #7dbdf1;
+    width: 80px;
+    cursor: pointer;
+    margin: 10px;
+    height: 80px;
+    top: 40%;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 100%;
+    z-index: 10;
+    box-shadow: 0 0 10px #5242547c;
+  }
+
+  .card_next {
+    right: 6px;
+    animation: color_change 3s infinite 1s linear;
+  }
+  .card_back {
+    left: 6px;
+    animation: color_change 3s infinite linear;
+  }
+
+  .card_next:after,
+  .card_back:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 19px solid;
+    border-color: transparent transparent transparent #ff0000d1;
+    top: 22px;
+    right: 6px;
+  }
+  .card_back:before {
+    border: 19px solid;
+    border-color: transparent #ff0000d1 transparent transparent;
+    top: unset;
+    left: unset;
+    top: 22px;
+    left: 6px;
+  }
+  .w_word,
+  .w_example,
+  .w_meaning {
+    margin: 56px auto 0;
+    padding: 2px 36px 6px;
+    width: 182px;
+    height: 60px;
+    font-size: 32px;
+  }
+  .w_meaning {
+    width: 80%;
+    margin: 6px auto;
+    font-size: 26px;
+    padding: 4px 36px;
+    animation: color_change 8s infinite 1s linear;
+  }
+  .w_example {
+    margin: 26px auto;
+    gap: 0px;
+  }
+  .txt_large {
+    display: flex;
+    flex: 1 0 168px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .xuanPhao {
+    top: 30px;
+    width: 150px;
+    height: 380px;
+    background-size: 2400px;
+    animation: w1Effect 3s steps(12) infinite;
+    -webkit-animation: w1Effect 3s steps(12) infinite;
+  }
 }

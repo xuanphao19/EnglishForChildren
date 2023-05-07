@@ -187,15 +187,7 @@ div#box_content {
   width: 100%;
   height: 100%;
 }
-/*
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/xuanphao19/EnglishForChildren.git
-git push -u origin main
 
-*/
 .uba_audioButton {
   vertical-align: middle;
   margin-left: 10px;

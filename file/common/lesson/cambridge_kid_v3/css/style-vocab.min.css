@@ -20,7 +20,7 @@ div#box_content {
 }
 
 #card123 {
-  background-image: url(/assets/img/family/XuanPhao19.png);
+  background-image: url(../../../../../assets/img/family/XuanPhao19.png);
   background-repeat: no-repeat;
   background-position: top left;
   background-size: cover;
@@ -166,8 +166,9 @@ div#box_content {
     background: #6372f6c1;
   }
 }
-.w_word {
-  animation: color_change 8s infinite 1s linear;
+.w_word,
+.w_example {
+  animation: color_change 8s infinite linear;
 }
 
 .w_meaning {
@@ -175,7 +176,7 @@ div#box_content {
   margin: 6px auto;
   font-size: 26px;
   padding: 4px 36px;
-  animation: color_change 8s infinite linear;
+  animation: color_change 8s infinite 1s linear;
 }
 .w_example {
   font-size: 24px;
@@ -211,6 +212,8 @@ div#box_content {
 .wImg {
   display: flex;
   height: 50%;
+  background: linear-gradient(rgb(94, 187, 255), rgb(54, 229, 14), rgb(230, 236, 33), rgb(229, 86, 247)) border-box
+    border-box;
 }
 .w_img {
   display: inline-block;
@@ -218,10 +221,11 @@ div#box_content {
   height: 100%;
   width: 100%;
   padding: 0;
-  background: #efefef;
   border-radius: 10px 10px 0 0;
 }
-
+.back .w_img {
+  opacity: 0.7;
+}
 .uba_audioButton.playing,
 .uba_audioButton:hover {
   background-position: -43px -307px;

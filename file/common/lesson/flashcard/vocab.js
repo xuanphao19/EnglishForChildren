@@ -198,6 +198,7 @@ var game_vocab_kd = {
     for (var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
     return arr;
   },
+ 
   getAudio: function () {
     $.getScript("/file/common/game123/js/audio_game_vs1.js", function () {
       $("#game_ubaPlayer").ubaPlayer_game({

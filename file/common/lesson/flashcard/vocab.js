@@ -1,4 +1,6 @@
 const is_not_firefox = (function () {
+  //   e.preventDefault();
+  //   e.stopPropagation();
   var ua = navigator.userAgent.toLowerCase();
   if (ua.indexOf("firefox") == -1) {
     return true;
@@ -33,6 +35,14 @@ const loadScript_callback = function (url, callback) {
     }
   });
 };
+let lastTime = 0;
+const meantime = function () {
+  let fullTime;
+  let timeNow = new Date().getTime();
+  fullTime = timeNow - lastTime;
+  lastTime = timeNow;
+  return fullTime;
+};
 
 let current_card = 0,
   number_card = 0,
@@ -42,9 +52,11 @@ let current_card = 0,
 $(document).ready(function () {
   if (typeof is_tablet != "undefined") $("#icon_audio_click").addClass("audio_tablet");
   number_card = $(".card_flip").length;
+
   $(".item_wrap").click(function (event) {
+    let meantimeFull = meantime();
     target_elm = $(event.target);
-    if (!target_elm.is(".uba_audioButton")) {
+    if (!target_elm.is(".uba_audioButton") && meantimeFull > 1500) {
       flip_card(this);
     }
   });
@@ -54,7 +66,6 @@ $(document).ready(function () {
     });
   });
 });
-
 const swiper = new Swiper(".hero_slider", {
   spaceBetween: 5,
   centeredSlides: true,

@@ -73,14 +73,14 @@
   align-items: center;
   gap: 18px;
   margin: 56px auto 0;
-  padding: 12px 36px 16px;
-  width: 312px;
+  padding: 72px 36px 68px;
+  width: 62%;
   font-size: 52px;
   font-weight: 600;
   color: #812984;
   text-shadow: -2px 2px 1px #fff;
   letter-spacing: 2px;
-  border-radius: 12px;
+  border-radius: 18px;
   background: #977c7c;
   overflow: hidden;
 }
@@ -261,6 +261,12 @@
     width: 60px !important;
     height: 60px !important;
   }
+  .card_next {
+    right: 46px;
+  }
+  .card_back {
+    left: 46px;
+  }
 
   .card_next:after,
   .card_back:after {
@@ -276,13 +282,18 @@
     margin-right: 18px;
     border-color: transparent #ff0000d1 transparent transparent;
   }
-  .card_number {
-    bottom: -38px;
-  }
+
   .xuanPhao {
-    top: 10%;
-    width: 280px;
+    top: 18%;
+    width: 168px;
+    height: 180px;
+    background-size: 1800px;
     animation: w1Effect 4s steps(12) infinite;
     -webkit-animation: w1Effect 4s steps(12) infinite;
+  }
+  @keyframes w1Effect {
+    100% {
+      background-position: -1400px;
+    }
   }
 }

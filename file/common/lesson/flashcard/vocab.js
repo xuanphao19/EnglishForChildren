@@ -69,7 +69,7 @@ $(document).ready(function () {
 const swiper = new Swiper(".hero_slider", {
   spaceBetween: 5,
   centeredSlides: true,
-  speed: 2000,
+  speed: 1000,
   loop: true,
   autoplay: {
     delay: 10000,

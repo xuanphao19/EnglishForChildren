@@ -8,7 +8,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top 10% left 0;
-  background-image: url(../../../../../assets/img/family/XuanPhao19.png);
+  background-image: url(../img/family/XuanPhao19.png);
 }
 
 .card123_wrapper {
@@ -222,7 +222,7 @@
   width: 300px;
   height: 380px;
   background-size: 3800px;
-  background-image: url(../../../../../assets/img/EmLaPhao-min.png);
+  background-image: url(../img/EmLaPhao-min.png);
   background-repeat: no-repeat;
   animation: w1Effect 3s steps(12) infinite;
   -webkit-animation: w1Effect 6s steps(12) infinite;

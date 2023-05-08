@@ -1,13 +1,14 @@
-function is_not_firefox() {
+const is_not_firefox = (function () {
   var ua = navigator.userAgent.toLowerCase();
   if (ua.indexOf("firefox") == -1) {
     return true;
   } else {
     return false;
   }
-}
+})();
+
 var front = true;
-function flip_card(e) {
+const flip_card = function (e) {
   $(e).flip({
     direction: "lr",
     "background-color": "red",
@@ -21,9 +22,9 @@ function flip_card(e) {
       front = !front;
     },
   });
-}
+};
 
-function loadScript_callback(url, callback) {
+const loadScript_callback = function (url, callback) {
   $.getScript(url, function (data, textStatus, jqxhr) {
     if (jqxhr.status != 200) {
       loadScript_callback(url, callback);
@@ -31,7 +32,7 @@ function loadScript_callback(url, callback) {
       callback();
     }
   });
-}
+};
 
 let current_card = 0,
   number_card = 0,

@@ -1,6 +1,7 @@
+/*  //   e.preventDefault();
+  //   e.stopPropagation(); */
+"use strict";
 const is_not_firefox = (function () {
-  //   e.preventDefault();
-  //   e.stopPropagation();
   var ua = navigator.userAgent.toLowerCase();
   if (ua.indexOf("firefox") == -1) {
     return true;
@@ -9,7 +10,13 @@ const is_not_firefox = (function () {
   }
 })();
 
-var front = true;
+let interacted = false;
+$(document).on(" mouseup pointerup touchend mousedown", () => {
+  // Khi mặt trời mọc trên đỉnh núi. Vạn vật mới trở nên lấp lánh!
+  interacted = true;
+});
+
+let front = true;
 const flip_card = function (e) {
   $(e).flip({
     direction: "lr",
@@ -35,37 +42,29 @@ const loadScript_callback = function (url, callback) {
     }
   });
 };
-let lastTime = 0;
-const meantime = function () {
-  let fullTime;
-  let timeNow = new Date().getTime();
-  fullTime = timeNow - lastTime;
-  lastTime = timeNow;
-  return fullTime;
-};
 
 let current_card = 0,
   number_card = 0,
-  target_elm = null,
-  all_vocab = false;
+  target_elm = null;
 
 $(document).ready(function () {
   if (typeof is_tablet != "undefined") $("#icon_audio_click").addClass("audio_tablet");
   number_card = $(".card_flip").length;
-
-  $(".item_wrap").click(function (event) {
-    let meantimeFull = meantime();
-    target_elm = $(event.target);
-    if (!target_elm.is(".uba_audioButton") && meantimeFull > 1500) {
-      flip_card(this);
-    }
-  });
+  $(".item_wrap")
+    .off("click")
+    .on("click", function (event) {
+      target_elm = $(event.target);
+      if (!target_elm.is(".uba_audioButton")) {
+        flip_card(this);
+      }
+    });
   loadScript_callback("./assets/vendor/libAudio/audioShort_new.js", function () {
     $("#ubaPlayer").ubaPlayer({
       codecs: [{name: "MP3", codec: "audio/mpeg;"}],
     });
   });
 });
+
 const swiper = new Swiper(".hero_slider", {
   spaceBetween: 5,
   centeredSlides: true,
@@ -89,6 +88,10 @@ const swiper = new Swiper(".hero_slider", {
 swiper.on("slideChange", function () {
   let currentEl,
     currentIndex = swiper.realIndex;
-  currentEl = $(".ubaLetter")[`${currentIndex}`];
-  currentEl.click();
+  if (interacted) {
+    currentEl = $(".ubaLetter")[`${currentIndex}`];
+    currentEl.click();
+  }
 });
+
+

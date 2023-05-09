@@ -98,6 +98,27 @@
   //   },
   // });
 
+  /*
+======  ĐẶT THỜI GIAN CHO TRÌNH LẮNG NGHE SỰ KIỆN ======
+let waited = 0,
+  canPlay = false;
+// Tình yêu nghẹn ngào trong chờ đợi ngọt ngào!
+$(document).on("mousedown", function () {
+  const getMeantime = (function (timeNow) {
+  let setTime;
+  setTime = timeNow - waited;
+  waited = timeNow;
+  return setTime;
+})(new Date().getTime());
+  canPlay = getMeantime >= 2000 ? true : false;
+});
+  if (canPlay === true) {
+    somethings!
+  } else {
+    somethings
+  }
+*/
+
   window.addEventListener("load", () => {
     AOS.init({
       duration: 1000,
